@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct ItsukiWorkoutApp_Watch_AppApp: App {
+    @State private var workoutManager = WorkoutManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+//                NewWorkoutView()
+//                DailySummaryView()
+                ContentView()
+                    .environment(workoutManager)
+            }
         }
     }
 }

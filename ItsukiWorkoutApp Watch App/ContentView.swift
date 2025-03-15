@@ -8,17 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(WorkoutManager.self) private var workoutManager
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 24) {
+            NavigationLink(destination: {
+                NewWorkoutView()
+                    .environment(workoutManager)
+            }, label: {
+                Text("New Workout")
+            })
+            
+            NavigationLink(destination: {
+                DailySummaryView()
+                    .environment(workoutManager)
+            }, label: {
+                Text("Daily Summary")
+            })
+        
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    NavigationStack {
+        ContentView()
+            .environment(WorkoutManager())
+    }
 }
